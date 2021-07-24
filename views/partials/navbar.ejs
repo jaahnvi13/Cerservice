@@ -1,0 +1,35 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/home" style="color: #1E69B8; padding-left: 2;"><strong>SAMURAI CARS</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <% if(currentUser.role=='Technician') {%>
+                <a class="nav-link" href="/reg">Register</a>
+                <a class="nav-link" href="/search">Search</a>
+                <a class="nav-link" href="/service">Service</a>
+                <a class="nav-link" href="/report">Report</a>
+                <a class="nav-link" href="/history">History</a>
+                <%}else{%>
+                <a class="nav-link" href="/search">Search</a>
+                <% } %> 
+            </div>
+            <div class="navbar-nav"> 
+                <% if(!currentUser) {%>
+                <a class="nav-link" href="/login">Login</a>
+                <a class="nav-link" href="/signup">SignUp</a>
+                <%}else{%> 
+                <a class="nav-link" href="/logout">Logout</a>   
+                <% } %> 
+            </div>
+            <div class="navbar-nav" style="color: #1E69B8; margin-left: auto;">
+                Service Management System
+                <a aria-disabled="true" style="font-weight: 700; font-family: Futura;"> &nbsp;&nbsp;&nbsp;<%=currentUser.username%> &nbsp; &nbsp;</a>
+            </div>
+        </div>
+
+    </div>
+</nav>
