@@ -1,0 +1,113 @@
+<% layout('layouts/boilerplate')%>
+<form novalidate class="validated-form" method="POST" action="/reg" id="regis">
+    <div class="row mt-3" >
+    <div class="col-md-6 mb-3">
+        <div class="mb-3">
+            <label class="form-label" for="brand">MAKE</label>
+            <input class="form-control" type="text" id="brand" 
+                value="TATA" disabled="disabled">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="model">MODEL</label>
+            <select name="model" id="model" class="form-select" aria-label="Default select example" required>
+                <option value="Tiago">Tiago</option>
+                <option value="Safari">Safari</option>
+                <option value="Harrier">Harrier</option>
+                <option value="Nexon">Nexon</option>
+                <option value="Indica">Indica</option>
+                <option value="Nano">Nano</option>
+                <option value="Tigor">Tigor</option>
+                <option value="Alfroz">Alfroz</option>
+            </select>
+        </div> 
+        <div class="mb-3">
+            <label class="form-label" for="year">YEAR OF MANUFACTURE</label>
+            <input class="form-control" type="number" id="year" name="year"
+                value="" required placeholder="yyyy" min=1990 max=2021>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="vin">VIN</label>
+            <input class="form-control" type="text" id="vin" name="vin"
+                value="" minlength="13" maxlength="13" required unique placeholder="VIN0000000000" pattern="VIN[0-9]{10}">
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="kms">KILOMETERS DRIVEN</label>
+            <input class="form-control" type="number" id="kms" name="kmsdriven"
+                value="" required min=0>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="dop">DATE OF PURCHASE</label>
+            <input class="form-control" type="date" id="dop" name="dop"
+                value="" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6  mb-3">
+        <div class="mb-3">
+            <label class="form-label" for="owner">CURRENT OWNER</label>
+            <input class="form-control" type="text" id="owner" name="owner"
+                value="" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="contact">CURRENT CONTACT</label>
+            <input class="form-control"  id="contact" name="contact" type="text"
+                value="" pattern="[789][0-9]{9}" required maxlength="10" required placeholder="8888888888">
+             <div class="valid-feedback">
+                    Looks good!
+             </div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">EMAIL</label>
+            <div class="input-group has-validation">
+              <span class="input-group-text" id="email">@</span>
+              <input type="text" class="form-control" id="email" name="email" aria-describedby="validationTooltipUsernamePrepend" required placeholder="user@gmail.com">
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+          </div>
+        <div class="mb-3">
+            <label class="form-label" for="address">Owner Address</label>
+            <textarea class="form-control" type="text" id="address" name="address" required></textarea>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="createdOn">CREATED ON</label>
+            <input class="form-control" type="date" id="createdOn" name="createdOn"
+                value="" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+    </div>
+</div> 
+<div class="mb-3 text-center">
+    <button class="btn btn-primary" type="submit" style="font-size:large;" onMouseOver="hoverin()" id="b" onMouseOut="hoverout()">REGISTER</button>
+</div>
+</form>
+<script>
+    function hoverout(){
+    var x = document.getElementById("b");
+    x.style.textDecorationLine='none';
+    }
+    function hoverin(){
+    var x = document.getElementById("b");
+    x.style.textDecorationLine='underline';
+    }
+ </script>
