@@ -16,7 +16,7 @@ const Service = require('./model/service');
 const User=require('./model/user');
 const {isLoggedIn,notAccessible} = require('./middleware');
 
-mongoose.connect('mongodb+srv://jaahnvi:jaahnvi@cluster0.esgyh.mongodb.net/carservice', {
+mongoose.connect('mongodb+srv://jaahnvi:-----@cluster0.esgyh.mongodb.net/carservice', {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -269,14 +269,6 @@ app.post('/history',isLoggedIn,notAccessible,async(req,res)=>{
       }
   })
 })
-
-app.get('/abc', catchAsync(async (req, res) => {
-    Carowner.find({}, function (err, carowners) {
-        res.render('cars/index', {
-            carownerList: carowners
-        })
-    })
-}));
 
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not found'), 404);
