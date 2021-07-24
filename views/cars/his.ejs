@@ -1,0 +1,63 @@
+<% layout('layouts/boilerplate')%>
+<form novalidate class="validated-form" action="/history" method="POST" >
+    <div class="row mt-3">
+    <div class="col-md-6">
+        <div>
+            <label class="form-label" for="vin">PREVIOUS SERVICES</label>
+            <input class="form-control" type="number" id="no" name="no"
+                value="" min=0 required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3 mt-3">
+      <div class=" text-start mt-3">
+        <button class="btn btn-primary" type="submit" onMouseOver="hoverin()" id="b" onMouseOut="hoverout()">GO</button>
+      </div>
+    </div>
+    </div>  
+</form>
+<% if(x<no){%><div style="color: red; font-size:13px;">*They are only <%=x%> services</div><%}%>
+<div>
+    <table class="table table-dark table-striped table-hover caption-top">
+        <caption style="color: black; font-size: large;"> Previous <% if(x<no){%> <%=x%> <%}else {%> <%=no%> <%}%> Services: </caption>
+        <thead>
+            <tr>
+            <th scope="col">ID</th>
+            <th scope="col">TYPE</th>
+            <th scope="col">SERVICE_DATE</th>
+            <th scope="col">VIN</th>
+            <th scope="col">KMS DRIVEN</th>
+            <th scope="col">EMPLOYEE</th>
+            <th scope="col">INSTRUCTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <%serviceList.forEach(service=>{%>
+                <% if((x-no)<y){%> 
+                    <tr>
+                    <td><%= service.sid%></td>
+                    <td><%= service.stype%></td>
+                    <td><%=service.sdate.toLocaleDateString()%></td> 
+                    <td><%= service.vin%></td>                                                                                                                                                                                                                                                                         
+                    <td><%= service.kmsdriven%></td>     
+                    <td><%= service.employee%></td>
+                    <td><%= service.instructions%></td>                                                                
+                    </tr>
+            <%} else {%>
+                  <%y=y+1%>
+            <%}})%>
+        </tbody>
+    </table>
+</div>
+<script>
+    function hoverout(){
+    var x = document.getElementById("b");
+    x.style.textDecorationLine='none';
+    }
+    function hoverin(){
+    var x = document.getElementById("b");
+    x.style.textDecorationLine='underline';
+    }
+ </script>

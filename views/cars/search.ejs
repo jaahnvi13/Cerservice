@@ -1,0 +1,56 @@
+<% layout('layouts/boilerplate')%>
+<form novalidate class="validated-form" action="/search" method="POST">
+    <div class="row mt-3">
+    <div class="col-md-6 mb-3">
+        <div class="mb-3">
+            <label class="form-label" for="vin">VEHICLE IDENTIFICATION NUMBER</label>
+            <input class="form-control" type="text" id="vin" name="vin"
+                value=""  minlength="13" maxlength="13" pattern="VIN[0-9]{10}" placeholder="VIN0000000000">
+                <div class="invalid-feedback">
+                    Please provide a valid VIN
+                </div>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-primary" type="submit" onMouseOver="hoverin()" id="b" onMouseOut="hoverout()">GO</button>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+        <div class="mb-3">
+            <label class="form-label" for="vin">CONTACT NUMBER</label>
+            <input class="form-control" type="text" id="contact" name="contact"
+                value=""  minlength="10" maxlength="10" pattern="[789][0-9]{9}" placeholder="8888888888">
+                <div class="invalid-feedback">
+                    Please provide a valid Contact
+                </div>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-primary" type="submit" onMouseOver="hoverinc()" id="c" onMouseOut="out()">GO</button>
+        </div>
+    </div>
+</div>  
+</form>
+<script>
+    function hoverout(){
+    var x = document.getElementById("b");
+    x.style.textDecorationLine='none';
+    }
+    function hoverin(){
+    var x = document.getElementById("b");
+    x.style.textDecorationLine='underline';
+    }
+    function out(){
+    var x = document.getElementById("c");
+    x.style.textDecorationLine='none';
+    }
+    function hoverinc(){
+    var x = document.getElementById("c");
+    x.style.textDecorationLine='underline';
+    }
+ </script>
+

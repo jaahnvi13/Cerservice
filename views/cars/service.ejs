@@ -1,0 +1,101 @@
+<% layout('layouts/boilerplate')%>
+<form novalidate class="validated-form" action="/service" method="POST">
+    <div class="row mt-3" >
+    <div class="col-md-6 mb-3">
+        <div class="mb-3">
+            <label class="form-label" for="sid">SERVICE ID</label>
+            <input class="form-control" type="number" id="sid" name="sid"
+                value="<%= x %>" placeholder="<%= x %>" readonly>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="stype">SERVICE TYPE</label>
+            <select name="stype" id="stype" class="form-select" aria-label="Default select example" required>
+                <option value="Interim Service">Interim Service</option>
+                <option value="Full Service">Full Service </option>
+                <option value="Major Service">Major Service</option>
+                <option value="AC Service">AC Service</option>
+                <option value="Tyre Service">Tyre Service</option>
+                <option value="Denting and Painting">Denting and Painting</option>
+            </select>
+        </div> 
+        <div class="mb-3">
+            <label class="form-label" for="sdate">SERVICE DATE </label>
+            <input class="form-control" type="date" id="sdate" name="sdate"
+                value="" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="employee">EMPLOYEE</label>
+            <select name="employee" id="employee" class="form-select" aria-label="Default select example" required>
+                <option value="Ramesh">Ramesh</option>
+                <option value="Satish">Satish</option>
+                <option value="Arjun">Arjun</option>
+                <option value="Suresh">Suresh</option>
+                <option value="Mohammed">Mohammed</option>
+                <option value="Sai">Sai</option>
+                <option value="Arya">Arya</option>
+            </select>
+        </div> 
+    </div>
+    <div class="col-md-6  mb-3">
+        <div class="mb-3">
+            <label class="form-label" for="vin">VIN</label>
+            <input class="form-control" type="text" id="vin" name="vin"
+                value=""  required minlength="13" maxlength="13" pattern="VIN[0-9]{10}">
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="kms">KILOMETERS DRIVEN</label>
+            <input class="form-control" type="number" id="kms" name="kmsdriven"
+                value="" required min=0>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="instructions">ADDITIONAL REQUIREMENTS</label>
+            <textarea class="form-control" rows="4" type="text" id="instructions" name="instructions"></textarea>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+        </div>
+    </div>
+</div> 
+<div class="row" style="text-align:center;">
+    <div class="col-md-6 mb-3">
+       <div class="mb-3 " style="display: inline;">
+           <button class="btn btn-primary" type="reset" onMouseOver="hoverin()" id="b" onMouseOut="hoverout()">RESET</button>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">  
+        <div class="mb-3" style="display: inline;">
+           <button class="btn btn-primary" type="submit" onMouseOver="rin()" id="c" onMouseOut="out()">SUBMIT</button>
+        </div>
+    </div>
+</div>   
+</form>
+<script>
+    function hoverout(){
+    var x = document.getElementById("b");
+    x.style.textDecorationLine='none';
+    }
+    function hoverin(){
+    var x = document.getElementById("b");
+    x.style.textDecorationLine='underline';
+    }
+    function out(){
+    var x = document.getElementById("c");
+    x.style.textDecorationLine='none';
+    }
+    function rin(){
+    var x = document.getElementById("c");
+    x.style.textDecorationLine='underline';
+    }
+ </script>

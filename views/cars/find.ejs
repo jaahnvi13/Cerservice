@@ -1,0 +1,179 @@
+<% layout('layouts/boilerplate')%>
+    <form method="POST" action="/report">
+        <div class="row mt-3 ">
+            <div class="col-md-6 mb-3">
+                <div class="mb-3">
+                    <label class="form-label" for="warranty">WARRANTY</label>
+                    <select name="rep" id="warranty" class="form-select" aria-label="Default select example" required>
+                        <% if(rep==1){%>
+                            <option value="1" selected>Basic Warranty by DOP</option>
+                        <% } else { %>
+                            <option value="1">Basic Warranty by DOP</option>
+                        <% } %> 
+                        <% if(rep==2){%>
+                            <option value="2" selected>Power Train Warranty by DOP</option>
+                        <% } else {%>
+                            <option value="2">Power Train Warranty by DOP</option>
+                        <% } %> 
+                        <% if(rep==3){%>
+                            <option value="3" selected>Out of Warranty by DOP</option>
+                        <% } else {%>
+                            <option value="3">Out of Warranty by DOP</option>
+                        <% } %> 
+                        <% if(rep==4){%>
+                            <option value="4" selected>Basic Warranty by Km Driven</option>
+                        <% } else {%>
+                            <option value="4" >Basic Warranty by Km Driven</option>
+                        <% } %> 
+                        <% if(rep==5){%>
+                            <option value="5" selected>Power Train Warranty by Km Driven</option>
+                        <% }else { %>
+                            <option value="5">Power Train Warranty by Km Driven</option>
+                        <% } %> 
+                        <% if(rep==6){%>
+                            <option value="6" selected>Out of Warranty by Km Driven</option>
+                        <% }else { %>
+                            <option value="6">Out of Warranty by Km Driven</option>
+                        <% } %> 
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3 mt-3">
+                <div class=" text-start mt-3">
+                    <button class="btn btn-primary" type="submit" onMouseOver="hoverin()" id="b" onMouseOut="hoverout()">GO</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div>
+        <table class="table table-dark table-striped table-hover caption-top">
+            <% if(rep==1){%>
+                <caption style="color: black;">Basic Warranty: &#60; 3 Years from DOP </caption>
+            <% } %>
+            <% if(rep==2){%>
+                <caption style="color: black;">Power Train Warranty: &#60; 10 Years from DOP</caption>
+            <% } %>
+            <% if(rep==3){%>
+                <caption style="color: black;">Out Of Warranty: &#62; 10 Years from DOP</caption>
+            <% } %>
+            <% if(rep==4){%>
+                <caption style="color: black;">Basic Warranty: &#60; 36000</caption>
+            <% } %>
+            <% if(rep==5){%>
+                <caption style="color: black;">Power Train Warranty: &#60; 100000 kms</caption>
+            <% } %>
+            <% if(rep==6){%>
+                <caption style="color: black;">Out Of Warranty: &#62; 100000 kms</caption>
+            <% } %>
+            <thead>
+                <tr>
+                <th scope="col">Make</th>
+                <th scope="col">Model</th>
+                <th scope="col">Year of Mfg</th>
+                <th scope="col">VIN</th>
+                <th scope="col">Date of Purchase</th>
+                <th scope="col">Owner</th>
+                <th scope="col">Contact</th>
+                <th scope="col">Kms Driven</th>
+                </tr>
+            </thead>
+            <tbody>
+            <%if(rep==1){%>
+                <%carownerList.forEach(carowner=>{%>
+                    <%if((year - carowner.dop.getFullYear()<3) || ((year - carowner.dop.getFullYear()==3)&& (carowner.dop.getMonth()>month)) || (year - carowner.dop.getFullYear() ==3 && (carowner.dop.getMonth()==month) && carowner.dop.getDate()>date)){%>
+                        <tr>
+                        <td>TATA</td>
+                        <td><%= carowner.model%></td>
+                        <td><%= carowner.year%></td>
+                        <td><%= carowner.vin%></td>                                                                    
+                        <td><%=carowner.dop.toLocaleDateString()%></td>                                                                    
+                        <td><%= carowner.owner%></td>                                                                     
+                        <td><%= carowner.contact%></td>                                                                 
+                        <td><%= carowner.kmsdriven%></td>                                                                   
+                        </tr>
+                <%}})%>
+            <%} else if(rep==2){%>
+                <%carownerList.forEach(carowner=>{%>
+                    <%if(((year - carowner.dop.getFullYear()<10) || ((year - carowner.dop.getFullYear()==10)&& (carowner.dop.getMonth()>month)) || (year - carowner.dop.getFullYear() ==10 && (carowner.dop.getMonth()==month) && carowner.dop.getDate()>date)) &&
+                    (((year - carowner.dop.getFullYear()>3) || ((year - carowner.dop.getFullYear()==3)&& (carowner.dop.getMonth()<month)) || (year - carowner.dop.getFullYear() ==3 && (carowner.dop.getMonth()==month) && carowner.dop.getDate()<date)))){%>
+                        <tr>
+                        <td>TATA</td>
+                        <td><%= carowner.model%></td>
+                        <td><%= carowner.year%></td>
+                        <td><%= carowner.vin%></td>                                                                    
+                        <td><%=carowner.dop.toLocaleDateString()%></td>                                                                    
+                        <td><%= carowner.owner%></td>                                                                     
+                        <td><%= carowner.contact%></td>                                                                 
+                        <td><%= carowner.kmsdriven%></td>                                                                   
+                        </tr>
+                <%}})%>
+            <%} else if(rep==3){%>
+                <%carownerList.forEach(carowner=>{%>
+                    <%if(((year - carowner.dop.getFullYear()>10) || ((year - carowner.dop.getFullYear()==10)&& (carowner.dop.getMonth()<month)) || (year - carowner.dop.getFullYear() ==10 && (carowner.dop.getMonth()==month) && carowner.dop.getDate()<date))){%>
+                        <tr>
+                        <td>TATA</td>
+                        <td><%= carowner.model%></td>
+                        <td><%= carowner.year%></td>
+                        <td><%= carowner.vin%></td>                                                                    
+                        <td><%=carowner.dop.toLocaleDateString()%></td>                                                                    
+                        <td><%= carowner.owner%></td>                                                                     
+                        <td><%= carowner.contact%></td>                                                                 
+                        <td><%= carowner.kmsdriven%></td>                                                                   
+                        </tr>
+                <%}})%>
+            <%}else if(rep==4){%>
+                <%carownerList.forEach(carowner=>{%>
+                    <%if(carowner.kmsdriven<36000){%>
+                        <tr>
+                        <td>TATA</td>
+                        <td><%= carowner.model%></td>
+                        <td><%= carowner.year%></td>
+                        <td><%= carowner.vin%></td>                                                                    
+                        <td><%=carowner.dop.toLocaleDateString()%></td>                                                                    
+                        <td><%= carowner.owner%></td>                                                                     
+                        <td><%= carowner.contact%></td>                                                                 
+                        <td><%= carowner.kmsdriven%></td>                                                                   
+                        </tr>
+                <%}})%>
+            <%} else if(rep==5){%>
+                <%carownerList.forEach(carowner=>{%>
+                    <%if(carowner.kmsdriven<100000 && carowner.kmsdriven>=36000){%>
+                        <tr>
+                        <td>TATA</td>
+                        <td><%= carowner.model%></td>
+                        <td><%= carowner.year%></td>
+                        <td><%= carowner.vin%></td>                                                                    
+                        <td><%=carowner.dop.toLocaleDateString()%></td>                                                                    
+                        <td><%= carowner.owner%></td>                                                                     
+                        <td><%= carowner.contact%></td>                                                                 
+                        <td><%= carowner.kmsdriven%></td>                                                                   
+                        </tr>
+                <%}})%>                                                                              
+            <%} else if(rep==6){%>
+                <%carownerList.forEach(carowner=>{%>
+                    <%if(carowner.kmsdriven>=100000){%>
+                        <tr>
+                        <td>TATA</td>
+                        <td><%= carowner.model%></td>
+                        <td><%= carowner.year%></td>
+                        <td><%= carowner.vin%></td>                                                                    
+                        <td><%=carowner.dop.toLocaleDateString()%></td>                                                                    
+                        <td><%= carowner.owner%></td>                                                                     
+                        <td><%= carowner.contact%></td>                                                                 
+                        <td><%= carowner.kmsdriven%></td>                                                                   
+                        </tr>
+                <%}})%>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+<script>
+    function hoverout(){
+    var x = document.getElementById("b");
+    x.style.textDecorationLine='none';
+    }
+    function hoverin(){
+    var x = document.getElementById("b");
+    x.style.textDecorationLine='underline';
+    }
+ </script>

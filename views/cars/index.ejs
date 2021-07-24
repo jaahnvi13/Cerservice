@@ -1,0 +1,78 @@
+<% layout('layouts/boilerplate')%>
+<form novalidate class="validated-form" action="/search" method="POST">
+  <div class="row mt-3">
+  <div class="col-md-6 mb-3">
+      <div class="mb-3">
+          <label class="form-label" for="vin">VEHICLE IDENTIFICATION NUMBER</label>
+          <input class="form-control" type="text" id="vin" name="vin"
+              value=""  minlength="13" maxlength="13" pattern="VIN[0-9]{10}" placeholder="VIN0000000000">
+              <div class="invalid-feedback">
+                  Please provide a valid VIN
+              </div>
+              <div class="valid-feedback">
+                  Looks good!
+              </div>
+      </div>
+      <div class="mb-3">
+          <button class="btn btn-primary" type="submit" onMouseOver="hoverin()" id="b" onMouseOut="hoverout()">GO</button>
+      </div>
+  </div>
+  <div class="col-md-6 mb-3">
+      <div class="mb-3">
+          <label class="form-label" for="vin">CONTACT NUMBER</label>
+          <input class="form-control" type="text" id="contact" name="contact"
+              value=""  minlength="10" maxlength="10" pattern="[789][0-9]{9}" placeholder="8888888888">
+              <div class="invalid-feedback">
+                  Please provide a valid Contact
+              </div>
+              <div class="valid-feedback">
+                  Looks good!
+              </div>
+      </div>
+      <div class="mb-3">
+          <button class="btn btn-primary" type="submit" onMouseOver="hoverinc()" id="c" onMouseOut="out()">GO</button>
+      </div>
+  </div>
+</div>  
+</form>
+
+<main class="container mt-3 mb-4">
+  <div class="container d-flex justify-content-center align-items-center mt-3" >
+      <div class="row">
+          <div class="col-md-6 offset-md-3 col-xl-5 offset-xl-4">
+            <div class="card shadow" style="background-color: aqua; border-radius: 15px;">
+              <h3 class="card-title text-center mb-0 mt-2 mb-2" style="background-color: aqua; font-family: Times New Roman; border-radius:15px 15px 0px 0px; font-weight: 525; ">VEHICLE DETIALS</h3>
+              <div class="card-body" style="background-color:azure; border-radius:0px 0px 15px 15px;">
+                 
+                  <p class="text-center" style="font-family:Times New Roman,Times; font-size:20px;">TATA <%=carowner.model%>
+                  </p>
+                  <p style="text-align: left; font-family: Times New Roman; padding-left: 15px; font-size: medium; padding-right: 2px; margin-bottom: 0;">
+                    <span><strong>Name:</strong> <%=carowner.owner%></span><br>
+                    <span><strong>Address:</strong> <%=carowner.address%> </span><br>
+                    <span><strong>Contact:</strong> <%=carowner.contact%></span><br>
+                    <span><strong>VIN:</strong> <%=carowner.vin%></span><br>
+                    <span><strong>KmsDriven:</strong> <%=carowner.kmsdriven%></span>
+                  </p>
+              </div>
+          </div>
+        </div>
+  </div>
+</main>
+<script>
+  function hoverout(){
+  var x = document.getElementById("b");
+  x.style.textDecorationLine='none';
+  }
+  function hoverin(){
+  var x = document.getElementById("b");
+  x.style.textDecorationLine='underline';
+  }
+  function out(){
+  var x = document.getElementById("c");
+  x.style.textDecorationLine='none';
+  }
+  function hoverinc(){
+  var x = document.getElementById("c");
+  x.style.textDecorationLine='underline';
+  }
+</script>
